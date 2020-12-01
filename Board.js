@@ -1,7 +1,107 @@
 class Board{
-    constructor(){
-        
-    }
+    constructor(x,y,z,side){
+		
+		// Material
+		this.materialConstants = materials.GOLD;
+		this.kAmbi = this.materialConstants.slice(0,3);
+		this.kDiff = this.materialConstants.slice(3,6);
+		this.kSpec = this.materialConstants.slice(6,9);
+		this.nPhong = this.materialConstants[9];
+
+		//Slots
+		this.slotDraughtDic = new Array();
+		var baseVal = x-(side/2);
+		var x1 = baseVal;
+		var z1 = baseVal;
+		var colorBool = true;
+		this.slots = new Array(8);
+		for (var i = 0; i < this.slots.length; i++) {
+			this.slots[i] = new Array(8);
+			for (var j = 0; j < this.slots[i].length; j++) {
+				this.slots[i][j] = new Slot(colorBool,x1,0,z1);
+				this.slotDraughtDic[8*i+j] = null;
+				colorBool = !colorBool;
+				z1++;
+			}
+			colorBool = !colorBool;
+			x1++;
+			z = baseVal;
+		}
+		this.selectedSlot = [];
+		this.overSlot = null;
+
+		// Draugths
+		const blackTeamStartPositions = [	[1,0],[3,0],[5,0],[7,0],
+											[0,1],[2,1],[4,1],[6,1],
+											[1,2],[3,2],[5,2],[7,2] ];
+		const whiteTeamStartPositions = [	[0,7],[2,7],[4,7],[6,7],
+											[1,6],[3,6],[5,6],[7,6],
+											[0,5],[2,5],[4,5],[6,5] ];
+		this.draughts = [];
+
+		for (var i = 0; i < blackTeamStartPositions.length; i++) {
+			var j = blackTeamStartPositions[i][0];
+			var k = blackTeamStartPositions[i][1];
+			var coords = this.slots[j][k].getCoords();
+
+			this.draughts[i] = new Draught(false,coords[0],coords[1],coords[2]);
+			this.slotDraughtDic[8*j+k] = this.draughts[i];
+		}
+		for (var i = 0; i < whiteTeamStartPositions.length; i++) {
+			var j = whiteTeamStartPositions[i][0];
+			var k = whiteTeamStartPositions[i][1];
+			var coords = this.slots[j][k].getCoords();
+
+			this.draughts[i + blackTeamStartPositions.length] = new Draught(true,coords[0],coords[1],coords[2]);
+			this.slotDraughtDic[8*j+k] = this.draughts[i + blackTeamStartPositions.length];
+		}
+
+		// Captured Draughts
+		//TO DO
+		//
+		//
+		//
+	}
+
+	//Getters
+	getSlots() {
+		return this.slots;
+	}
+
+	isPlayablePosition(x,z) {
+		return (x+z)%2==1;
+	}
+
+	getDraughts() {
+		return this.draughts;
+	}
+
+	getNumberOfDraughts() {
+		return this.draughts.length;
+	}
+
+	getNumberOfSlots() {
+		return this.slots.length * this.slots[0].length;
+	}
+
+	getColors() {
+		return this.colors;
+	}
+
+	getSelectedSlot() {
+		return this.selectedSlot;
+	}
+
+	getSelectedSlotObject() {
+		return this.slots[this.selectedSlot[0]][this.selectedSlot[1]];
+	}
+
+	getOverSlot() {
+		return this.overSlot;
+	}
+
+	// Playing Logic
+	
 }
 
 const materials = {
