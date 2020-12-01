@@ -4,7 +4,7 @@ function drawScene() {
 
 	// Clearing with the background color
 	gl.clear(gl.COLOR_BUFFER_BIT);
-	
+
 	// NEW --- Computing the Projection Matrix
 	if( projectionType == 0 ) {
 		// For now, the default orthogonal view volume
@@ -219,9 +219,9 @@ function setEventListeners(){
 		angleXX = 0.0;
 		angleYY = 0.0;
 		angleZZ = 0.0;
-		sx = 1.0;
-		sy = 1.0;
-		sz = 1.0;
+		sx = 0.8;
+		sy = 0.8;
+		sz = 0.8;
 
 		// YY axes
 		rotationYY_ON = 0;
