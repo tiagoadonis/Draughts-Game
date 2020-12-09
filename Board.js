@@ -102,6 +102,111 @@ class Board{
 
 	// Playing Logic
 	
+	isValidPosition(pos) {
+		return(pos.length==2 && pos[0]>=0 && pos[0]<=7 && pos[1]>=0 && pos[1]<=7);
+	}
+
+	isValidPlay(posI, posF, team) {
+		console.log(posI);
+		console.log(posF);
+		console.log(team);
+		if(posI[0]==posF[0] && posI[1]==posF[1]) {
+			console.log("1");
+			return false;
+		}
+		if(this.isValidPosition(posI) && this.isValidPosition(posF)) {
+			if(this.slotDraughtDic[8*posI[0]+posI[1]].getTeam()==team && this.slotDraughtDic[8*posF[0]+posF[1]]===null) {
+				if(team) {	
+					// Advance
+					if(posF[1]==posI[1]-1) {
+						return(posF[0]==posI[0]-1 || posF[0]==posI[0]+1);
+					}
+					// Capture
+					else if(posF[1]==posI[1]-2) {
+						if(posF[0]==posI[0]-2) {
+							return this.slotDraughtDic[8*(posI[0]-1)+posI[1]-1].getTeam()==(!team);
+						}
+						else if(posF[0]==posI[0]+2) {
+							return this.slotDraughtDic[8*(posI[0]+1)+posI[1]-1].getTeam()==(!team);
+						}
+					}
+					return false;
+				}
+				else {
+					// Advance
+					if(posF[1]==posI[1]+1) {
+						return(posF[0]==posI[0]-1 || posF[0]==posI[0]+1);
+					}
+					// Capture
+					else if(posF[1]==posI[1]+2) {
+						if(posF[0]==posI[0]-2) {
+							return this.slotDraughtDic[8*(posI[0]-1)+posI[1]+1].getTeam()==(!team);
+						}
+						else if(posF[0]==posI[0]+2) {
+							return this.slotDraughtDic[8*(posI[0]+1)+posI[1]+1].getTeam()==(!team);
+						}
+					}
+					return false;
+				}
+			}
+			return false;
+		}
+		return false;
+	}
+
+	play(posI, posF, team) {
+		// Get initial and final slot
+		var posFSlot = this.slots[posF[0]][posF[1]];
+
+		// Update draught information
+		var draught = this.slotDraughtDic[8*posI[0]+posI[1]];
+		var currentCoords = draught.getCoords();
+		var newCoords = posFSlot.getCoords();
+		draught.setCoords(newCoords);
+		console.log("newCoords= "+newCoords);
+
+		// Compute tx, ty, tz of the draught
+		var diffCoords = [];
+		diffCoords.push(newCoords[0] - currentCoords[0]);
+		diffCoords.push(newCoords[1] - currentCoords[1]);
+		diffCoords.push(newCoords[2] - currentCoords[2]);
+		draught.setDiffCoords(diffCoords);
+		console.log("diffCoords= "+diffCoords);
+
+		// Update slot -> draught dictionary
+		this.slotDraughtDic[8*posF[0]+posF[1]] = this.slotDraughtDic[8*posI[0]+posI[1]];
+		this.slotDraughtDic[8*posI[0]+posI[1]] = null;
+
+		// Capture
+		if(posF[0]==posI[0]-2 || posF[0]==posI[0]+2) {
+			// Retrieve captured Draught reference
+			var capturedDraught = this.slotDraughtDic[4*(posI[0]+posF[0])+(posI[1]+posF[1])/2];
+
+			// Update draught coordinates
+			var capturedCurrentCoords = capturedDraught.getCoords();
+			var stackCoords = [this.capturedStackBaseLocation[team][0], this.capturedStackBaseLocation[team][1], this.capturedStackBaseLocation[team][2]];
+			console.log(this.capturedStackBaseLocation);
+			console.log("stackCoords= "+stackCoords);
+			var capturedNewCoords = [this.capturedStackBaseLocation[team][0], this.capturedStackBaseLocation[team][1]+this.capturedStack[team].length*capturedDraught.getHeight(), this.capturedStackBaseLocation[team][2]];
+			capturedDraught.setCoords(capturedNewCoords);
+			capturedDraught.setDiffCoords([capturedNewCoords[0]-capturedCurrentCoords[0], capturedNewCoords[1]-capturedCurrentCoords[1], capturedNewCoords[2]-capturedCurrentCoords[2]]);
+			console.log("capturedNewCoords= "+capturedNewCoords);
+			console.log("capturedDiffCoords= "+[capturedNewCoords[0]-capturedCurrentCoords[0], capturedNewCoords[1]-capturedCurrentCoords[1], capturedNewCoords[2]-capturedCurrentCoords[2]]);
+
+			// Insert draught in stack
+			this.capturedStack[team].push(capturedDraught);
+
+			// Remove captured
+			this.slotDraughtDic[4*(posI[0]+posF[0])+(posI[1]+posF[1])/2] = null;
+		}
+		this.currentTeam = !this.currentTeam;
+		this.gameOver = this.capturedStack[true].length == 12 || this.capturedStack[false].length == 12;
+		// To make visible any changes in the draughts
+		initBuffersDraughts();
+	}
+
+	// Slots Logic
+	
 }
 
 const materials = {
