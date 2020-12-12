@@ -17,7 +17,7 @@ var globalRotationYY_SPEED = 1;
 var primitiveType = null;
  
 // To allow choosing the projection type
-var projectionType = 0;
+var projectionType = 1;
 
 // The viewer position
 // It has to be updated according to the projection type
@@ -139,9 +139,9 @@ function setEventListeners(){
 		var p = projection.selectedIndex;
 				
 		switch(p){
-			case 0 : projectionType = 0;
+			case 1 : projectionType = 0;
 				break;
-			case 1 : projectionType = 1;
+			case 0 : projectionType = 1;
 				break;
 		}  	
 	});      
