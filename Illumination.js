@@ -1,5 +1,4 @@
 // Point Light Source Features
-
 // Directional
 var pos_Light_Source = [ 0.0, 0.0, 1.0, 1.0 ];
 

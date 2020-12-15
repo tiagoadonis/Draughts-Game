@@ -110,7 +110,7 @@ class Board {
 		this.gameOver = false;
 	}
 
-	// Getters #############################################
+	// Getters 
 	getVertices() {
 		return this.vertices;
 	}
@@ -169,7 +169,7 @@ class Board {
 		return this.overSlot;
 	}
 
-	// Playing Logic ##########################################
+	// Playing Logic 
 	isValidPosition(pos) {
 		return(pos.length==2 && pos[0]>=0 && pos[0]<=7 && pos[1]>=0 && pos[1]<=7);
 	}
@@ -273,7 +273,7 @@ class Board {
 		initBuffersDraughts();
 	}
 
-	// Slots Logic #############################################
+	// Slots Logic 
 	moveOverRight() {
 		if(this.overSlot === null) {
 			this.overSlot = [0,7];
@@ -379,8 +379,6 @@ class Board {
 				}
 			}
 		}
-
-
 	}
 
 	deselectSlot() {
@@ -404,7 +402,7 @@ class Board {
 	// Green:	124,252,0
 	// Red:		255,69,0
 
-	// Game info ###############################################
+	// Game info 
 	getGameOver() {
 		return this.gameOver;
 	}
@@ -428,7 +426,7 @@ class Board {
 
 	}
 
-	// For illumination ####################################
+	// For illumination 
 	setMaterial(material) {
 		// do something regarding the parameter material, then:
 		// var materialConstants = ???;
@@ -446,7 +444,6 @@ class Board {
 }
 
 class Slot {
-
 	// colorBool is boolean for there are two and only two colors
 	// x, y and z are idCoord (center of top face)
 	// s is side
@@ -474,7 +471,6 @@ class Slot {
 
 		this.colors = [];
 		this.resetColors();
-
 
 		// green 124 252 0 -> 0.48, 0.98, 0
 		// red 255, 69, 0 -> 1, 0.27, 0
@@ -521,7 +517,6 @@ class Slot {
 	}
 
 	resetColors() {
-
 		var color = 0.25;
 		if (this.colorBool) {
 			color = 0.75;
@@ -2130,17 +2125,17 @@ class Draught {
 		this.diffCoords = coords;
 	}
 
-	// Colours ####################################
+	// Colours 
 	setColor(colorCode) {
 		if (this.team) {
 			switch (colorCode) {
 				case 1:
-					// Color 0 Red
-					this.setColorDraught([255, 0, 0], [255, 0, 0], [255, 0, 0]);
+					// Color 0 Gray
+					this.setColorDraught([127, 127, 127], [127, 127, 127], [127, 127, 127]);
 					break;
 				default:
-					// Color 1 Gray
-					this.setColorDraught([127, 127, 127], [127, 127, 127], [127, 127, 127]);
+					// Color 1 Red
+					this.setColorDraught([192, 30, 34], [192, 30, 34], [192, 30, 34]);
 					break;
 			}
 		}
@@ -2156,7 +2151,6 @@ class Draught {
 					break;
 			}
 		}
-
 	}
 
 	setColorDraught(color1, color2, color3) {
@@ -2177,7 +2171,6 @@ class Draught {
 			this.colors.push( color3[2] / 255);
 		}
 	}
-
 }
 
 const materials = {

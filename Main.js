@@ -2,26 +2,21 @@
 //
 //  Main.js
 //
-//  Paulo Vasconcelos, Pedro Teixeira November 2019
 //  Adapted J. Madeira - November 2015
 //
 //////////////////////////////////////////////////////////////////////////////
 
-
-//----------------------------------------------------------------------------
-//
 // Global Variables
-//
-// WebGL context #######################################################################################################
+// WebGL context 
 var gl = null;
 var shaderProgram = null;
 
-// Game Entities #######################################################################################################
+// Game Entities 
 var board	 = new Board();
 var slots 	 = board.getSlots();
 var draughts = board.getDraughts();
 
-// Buffers #############################################################################################################
+// Buffers 
 var boardVertexPositionBuffer = null;		// Board
 var boardVertexIndexBuffer = null;
 var boardVertexColorBuffer = null;
@@ -35,8 +30,7 @@ var draughtsVertexPositionBuffer = [];		// Draughts
 var draughtsVertexIndexBuffer = [];
 var draughtsVertexColorBuffer = [];
 
-// The global transformation parameters ################################################################################
-
+// The global transformation parameters 
 // The translation vector
 var tx = 0.0;
 var ty = 0.0;
@@ -128,9 +122,8 @@ function resetGame() {
 	setEventListeners( canvas );
 	initBuffers();
 }
-//----------------------------------------------------------------------------
-// User Interaction
 
+// User Interaction
 function outputInfos() {
 	// FPS
 	countFrames();
@@ -153,12 +146,9 @@ function outputInfos() {
 	document.getElementById("team2-score").innerText = scores[1];
 }
 
-//----------------------------------------------------------------------------
 // WebGL
-
 function initWebGL( canvas ) {
 	try {
-		
 		// Create the WebGL context
 		// Some browsers still need "experimental-webgl"
 		gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
@@ -176,18 +166,13 @@ function initWebGL( canvas ) {
 }
 
 function runWebGL() {
-	
 	var canvas = document.getElementById("my-canvas");
 	
 	initWebGL( canvas );
-
 	shaderProgram = initShaders( gl );
-	
 	setEventListeners( canvas );
-
-	initBuffers();
 	
-	tick();		// A timer controls the rendering / animation    
-
+	initBuffers();
+	tick();		// A timer controls the rendering / animation   
 	outputInfos();
 }

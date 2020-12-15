@@ -1,13 +1,10 @@
-
 //  Drawing the 3D scene
 var pos_Viewer = [ 0.0, 0.0, 0.0, 1.0 ];
 function drawScene() {
     var pMatrix;
-
     var mvMatrix = mat4();
 
     // Clearing with the background color
-
     gl.clear(gl.COLOR_BUFFER_BIT);
 
     // NEW --- Computing the Projection Matrix
@@ -36,9 +33,7 @@ function drawScene() {
     gl.uniform4fv( gl.getUniformLocation(shaderProgram, "viewerPosition"),
         flatten(pos_Viewer) );
 
-
     // Instantiating the models
-
     // Board Model
     drawModel( boardVertexPositionBuffer,
         boardVertexColorBuffer,

@@ -22,7 +22,6 @@ function initBuffersBoard() {
         boardVertexPositionBuffer.itemSize,
         gl.FLOAT, false, 0, 0);
 
-
     // Colors
     boardVertexColorBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, boardVertexColorBuffer);
@@ -102,7 +101,6 @@ function initBuffersDraughts() {
     draughtsVertexColorBuffer = [];
 
     for (var i = 0; i < 24; i++) {
-
         // Slot
         var draught = draughts[i];
 
@@ -137,4 +135,3 @@ function initBuffersDraughts() {
         draughtsVertexIndexBuffer.push(draughtVertexIndexBuffer);
     }
 }
-//----------------------------------------------------------------------------

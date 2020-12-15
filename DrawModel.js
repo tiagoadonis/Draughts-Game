@@ -29,7 +29,6 @@ function drawModel( modelVertexPositionBuffer,
         drawModelIllumination();
     }
     else {
-
         gl.bindBuffer(gl.ARRAY_BUFFER, modelVertexColorBuffer);
         gl.vertexAttribPointer(shaderProgram.vertexColorAttribute, modelVertexColorBuffer.itemSize, gl.FLOAT, false, 0, 0);
     }
