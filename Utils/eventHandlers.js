@@ -1,10 +1,9 @@
 function setEventListeners( canvas ){
-    // From learningwebgl.com
+    
     canvas.onmousedown = handleMouseDown;
     document.onmouseup = handleMouseUp;
     document.onmousemove = handleMouseMove;
 
-    // From learningwebgl.com
     function handleKeyDown(event) {
         currentlyPressedKeys[event.keyCode] = true;
     }
@@ -197,7 +196,6 @@ function setEventListeners( canvas ){
 }
 
 // Handling mouse events
-// Adapted from www.learningwebgl.com
 var mouseDown = false;
 var lastMouseX = null;
 var lastMouseY = null;
@@ -232,8 +230,6 @@ function handleMouseMove(event) {
 }
 
 // Handling keyboard events
-// Adapted from www.learningwebgl.com
-
 var currentlyPressedKeys = {};
 var blocked = {};
 blocked[27] = false;

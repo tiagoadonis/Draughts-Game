@@ -137,7 +137,7 @@ function outputInfos() {
 	}
 
 	if (board.getGameOver()) {
-		alert("Game Over! Congratulations to team " + board.getWinningTeam());
+		alert("Game Over! Congratulations to " + board.getWinningTeam());
 		resetGame();
 	}
 

@@ -426,17 +426,6 @@ class Board {
 
 	}
 
-	// For illumination 
-	setMaterial(material) {
-		// do something regarding the parameter material, then:
-		// var materialConstants = ???;
-		// this.kAmbi = materialConstants.slice(0,3);
-		// this.kDiff = materialConstants.slice(3,6);
-		// this.kSpec = materialConstants.slice(6,9);
-		// this.nPhong = materialConstants[9];
-	}
-
-	// order : this.kAmbi, this.kDiff, this.kSpec, this.nPhong
 	getMaterial() {
 		return [this.kAmbi, this.kDiff, this.kSpec, this.nPhong];
 	}
