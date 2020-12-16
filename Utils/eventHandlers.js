@@ -237,7 +237,7 @@ function handleMouseMove(event) {
 var currentlyPressedKeys = {};
 var blocked = {};
 blocked[27] = false;
-blocked[32] = false;
+blocked[13] = false;
 blocked[37] = false;
 blocked[38] = false;
 blocked[39] = false;
@@ -280,10 +280,10 @@ function handleKeys() {
             console.log(board.selectedSlot,board.overSlot);
         }
     }
-    // Spacebar key
-    if (currentlyPressedKeys[32]) {
-        if(!blocked[32]) {
-            blocked[32] = true;
+    // Enter key
+    if (currentlyPressedKeys[13]) {
+        if(!blocked[13]) {
+            blocked[13] = true;
             board.selectSlot();
             console.log(board.selectedSlot,board.overSlot);
         }

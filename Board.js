@@ -92,17 +92,17 @@ class Board {
 		this.colors = [];
 		var length = this.vertices.length;
 		for (var i = 0; i < length; i+=9) {
-			this.colors.push( 102 / 255 );
-			this.colors.push( 51 / 255 );
-			this.colors.push( 0 / 255 );
+			this.colors.push( 86 / 255 );
+			this.colors.push( 33 / 255 );
+			this.colors.push( 11 / 255 );
 
-			this.colors.push( 164 / 255 );
-			this.colors.push( 84 / 255 );
-			this.colors.push( 0 / 255 );
+			this.colors.push( 137 / 255 );
+			this.colors.push( 57 / 255 );
+			this.colors.push( 11 / 255 );
 
-			this.colors.push( 254 / 255 );
-			this.colors.push( 127 / 255 );
-			this.colors.push( 0 / 255 );
+			this.colors.push( 150 / 255 );
+			this.colors.push( 66 / 255 );
+			this.colors.push( 11 / 255 );
 		}
 
 		this.currentTeam = true;
@@ -517,9 +517,9 @@ class Slot {
 	}
 
 	resetColors() {
-		var color = 0.25;
+		var color = 0.2;
 		if (this.colorBool) {
-			color = 0.75;
+			color = 0.80;
 		}
 
 		var length = this.vertices.length;
