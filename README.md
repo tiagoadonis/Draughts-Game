@@ -18,3 +18,5 @@ Besides the capability of playing the 3D board model, you can do other operation
 2. The position of the selected piece will change color and you can now select the new position using the same keys as before.  
 3. Move the piece by pressing ↵ again.  
 4. At any moment you can cancel a move by pressing ESC.  
+
+<img src="view.png">
