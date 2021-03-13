@@ -19,4 +19,5 @@ Besides the capability of playing the 3D board model, you can do other operation
 3. Move the piece by pressing ↵ again.  
 4. At any moment you can cancel a move by pressing ESC.  
 
+<br>
 <img src="view.png">
